@@ -15,5 +15,6 @@
     "express": "^4.10.6",
     "method-override": "^2.3.0",
     "mongoose": "^3.8.20"
-  }
+  },
+  "postinstall" : "./node_modules/bower/bin/bower install"
 }
