@@ -10,14 +10,11 @@ var mongoose = require('mongoose');
 
 // configuration ====================================
 
-// config files
-var db = require('./config/db');
-
 // set up port
 var port = process.env.PORT || 9999;
 
 // connect to our mongoDB database
-mongoose.connect(db.url);
+mongoose.connect(process.env.DB);
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json
@@ -36,7 +33,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
-require('./app/routes')(app); // configure our routes
+require('./js/routes')(app); // configure our routes
 
 // start app ===============================================
 

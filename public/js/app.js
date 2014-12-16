@@ -6,21 +6,26 @@
 angular.module('Millionaire', [
     'ngRoute'
     ])
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'templates/index.html',
+                templateUrl: 'views/index.html',
                 controller: 'IndexCtrl'
             })
             .when('/leaderboard', {
-                templateUrl: 'templates/leaderBoard.html',
+                templateUrl: 'views/leaderBoard.html',
                 controller: 'LeaderBoardCtrl'
             })
             .when('/add', {
-                templateUrl: 'templates/add.html',
+                templateUrl: 'views/add.html',
                 controller: 'AddCtrl'
             })
             .otherwise({
                 redirectTo: '/'
             });
+
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
     }]);
