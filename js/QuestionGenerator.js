@@ -31,7 +31,7 @@
     };
 
     return {
-        getQuestions: getQuestions,
+        getQuestions: getQuestions
     }
 
 };

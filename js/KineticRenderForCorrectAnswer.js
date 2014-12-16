@@ -28,7 +28,7 @@ var KineticRenderForCorrectAnswer = function (stage) {
             fontFamily: 'Arial',
             width: 500,
             align: 'center',
-            fill: '#004a4d',
+            fill: '#004a4d'
         });
 
         var corectAnswerDescriptionText = new Kinetic.Text({
@@ -39,7 +39,7 @@ var KineticRenderForCorrectAnswer = function (stage) {
             fontFamily: 'Arial',
             width: 500,
             align: 'center',
-            fill: '#1D7074',
+            fill: '#1D7074'
         });
 
         var nextQuestion = new Kinetic.Rect({
@@ -70,21 +70,21 @@ var KineticRenderForCorrectAnswer = function (stage) {
             y: 500,
             width: 300,
             height: 70,
-            opacity: 0,
+            opacity: 0
         });
 
         nextQuestionInvisible.on('click', function () {
             gameEngine.nextQuestion();
             $('#container').fadeIn(1000);
-        })
+        });
         nextQuestionInvisible.on('mouseover', function () {
             nextQuestion.fill('#1D7074');
             layer.draw();
-        })
+        });
         nextQuestionInvisible.on('mouseout', function () {
             nextQuestion.fill('#004a4d');
             layer.draw();
-        })
+        });
         layer.add(nextQuestion, nextQuestionText, nextQuestionInvisible, corectAnswerBox, corectAnswerText, corectAnswerDescriptionText);
         stage.add(layer);
         
@@ -129,7 +129,7 @@ var KineticRenderForCorrectAnswer = function (stage) {
             fontFamily: 'Arial',
             width: 500,
             align: 'center',
-            fill: '#1D7074',
+            fill: '#1D7074'
         });
 
         var nextQuestion = new Kinetic.Rect({
@@ -139,7 +139,7 @@ var KineticRenderForCorrectAnswer = function (stage) {
             height: 70,
             fill: '#004a4d',
             stroke: '#004a4d',
-            strokeWidth: 5,
+            strokeWidth: 5
         });
 
         var nextQuestionText = new Kinetic.Text({
@@ -165,15 +165,15 @@ var KineticRenderForCorrectAnswer = function (stage) {
 
         nextQuestionInvisible.on('click', function () {
             location.reload();
-        })
+        });
         nextQuestionInvisible.on('mouseover', function () {
             nextQuestion.fill('#1D7074');
             layer.draw();
-        })
+        });
         nextQuestionInvisible.on('mouseout', function () {
             nextQuestion.fill('#004a4d');
             layer.draw();
-        })
+        });
 
         layer.add(nextQuestion, nextQuestionText, nextQuestionInvisible, incorectedAnswerBox, incorectAnswerText, incorectAnswerDescriptionText);
         stage.add(layer);
@@ -190,7 +190,7 @@ var KineticRenderForCorrectAnswer = function (stage) {
             height: 70,
             fill: '#004a4d',
             stroke: '#004a4d',
-            strokeWidth: 5,
+            strokeWidth: 5
         });
 
         var nextQuestionText = new Kinetic.Text({
@@ -211,20 +211,20 @@ var KineticRenderForCorrectAnswer = function (stage) {
             y: 500,
             width: 300,
             height: 70,
-            opacity: 0,
+            opacity: 0
         });
 
         nextQuestionInvisible.on('click', function () {
             location.reload();
-        })
+        });
         nextQuestionInvisible.on('mouseover', function () {
             nextQuestion.fill('#1D7074');
             layer.draw();
-        })
+        });
         nextQuestionInvisible.on('mouseout', function () {
             nextQuestion.fill('#004a4d');
             layer.draw();
-        })
+        });
 
         layer.add(nextQuestion, nextQuestionText, nextQuestionInvisible);
 

@@ -1,0 +1,18 @@
+<div id="leaderboard-screen" class="canvas-div">
+    <button id="leaderboard-back-button" ng-click="leaderBoardBack()">Back</button>
+</div>
+<div id="container" class="canvas-div"></div>
+<div id="answer-state" class="canvas-div"></div>
+<div id="wrapper">
+    <div id="start-screen">
+        <div id="input-section">
+            <label for="input-name">Ninja candidate: </label>
+            <input type="text" id="input-name" name="player-name" autofocus ng-model="playerName">
+        </div>
+        <button id="new-game-button" class="start-button" ng-click="newGame()">New Game</button>
+        <br />
+        <button id="leaderboard-button" class="start-button" ng-click="leaderBoard()">Leaderboard</button>
+    </div>
+    <div id="game-screen">
+    </div>
+</div>
