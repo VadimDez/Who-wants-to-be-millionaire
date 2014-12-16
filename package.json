@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall" : "./node_modules/bower/bin/bower install"
   },
   "author": "",
   "license": "private",
@@ -15,6 +16,5 @@
     "express": "^4.10.6",
     "method-override": "^2.3.0",
     "mongoose": "^3.8.20"
-  },
-  "postinstall" : "./node_modules/bower/bin/bower install"
+  }
 }
