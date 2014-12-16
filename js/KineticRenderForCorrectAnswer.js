@@ -244,7 +244,6 @@ var KineticRenderForCorrectAnswer = function (stage) {
 
         imageObj.src = '/images/certificate.png';
         stage.add(layer);
-
     };
 
     return {
