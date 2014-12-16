@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/jquery-2.1.1.js"></script>
+    <script src="Scripts/kinetic-v5.1.0.min.js"></script>
+    <style>
+        #container {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" style="border:1px solid black"></div>
+    <script>
+        var stage = new Kinetic.Stage({
+            container: 'container',
+            width: 800,
+            height: 600
+        });
+        var AnswerA = new Kinetic.Rect({
+            x: 10,
+            y: 400,
+            width: 270,
+            height: 70,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 5,
+        });
+        var AnswerB = new Kinetic.Rect({
+            x: 290,
+            y: 400,
+            width: 270,
+            height: 70,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 5,
+        });
+        var AnswerC = new Kinetic.Rect({
+            x: 10,
+            y: 480,
+            width: 270,
+            height: 70,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 5,
+        });
+        var AnswerD = new Kinetic.Rect({
+            x: 290,
+            y: 480,
+            width: 270,
+            height: 70,
+            fill: 'red',
+            stroke: 'black',
+            strokeWidth: 5,
+            cornerRadius: 5
+        });
+        //letter A
+        var LetterA = new Kinetic.Text({
+            x: 20,
+            y: 410,
+            text: 'A',
+            fontSize: 50,
+            fontFamily: 'Calibri',
+            fill: 'yellow'
+        });
+        var LetterC = new Kinetic.Text({
+            x: 20,
+            y: 490,
+            text: 'C',
+            fontSize: 50,
+            fontFamily: 'Calibri',
+            fill: 'yellow'
+        });
+        var LetterD = new Kinetic.Text({
+            x: 300,
+            y: 490,
+            text: 'D',
+            fontSize: 50,
+            fontFamily: 'Calibri',
+            fill: 'yellow'
+        });
+        var LetterB = new Kinetic.Text({
+            x: 300,
+            y: 410,
+            text: 'B',
+            fontSize: 50,
+            fontFamily: 'Calibri',
+            fill: 'yellow'
+        });
+        var LetterAText = new Kinetic.Text({
+            x: 330,
+            y: 395,
+            text: 'Long Long Longggggggggggg Long ',
+            fontSize: 20,
+            fontFamily: 'Calibri',
+            fill: 'yellow',
+            width: 235,
+            padding: 10,
+            align: 'center'
+        });
+
+
+        var AnswerAInvisible = new Kinetic.Rect({
+            x: 10,
+            y: 400,
+            width: 270,
+            height: 70,
+            opacity: 0, 
+        });
+
+        AnswerAInvisible.on('click', function () {
+            alert('clicked');
+        })
+        AnswerAInvisible.on('mouseover', function () {
+            AnswerA.fill('black');
+            layer.draw();
+        })
+        AnswerAInvisible.on('mouseout', function () {
+            AnswerA.fill('red');
+            layer.draw();
+        })
+
+
+
+        var layer = new Kinetic.Layer();
+        layer.add(AnswerA, AnswerB, AnswerC, AnswerD, LetterA, LetterB, LetterC, LetterD, AnswerAInvisible, LetterAText);
+
+        stage.add(layer);
+    </script>
+    <script src="js/QuestionGenerator.js"></script>
+    <script>
+        var generator = new QuestionGeneration();
+        var arrWithQuestion = generator.getQuestions();
+        for (var i = 0; i < arrWithQuestion.length; i++) {
+            console.log(arrWithQuestion[i].Question);
+        }
+    </script>
+</body>
+</html>

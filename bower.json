@@ -1,0 +1,21 @@
+{
+  "name": "Millionaire",
+  "version": "1.0.0",
+  "authors": [
+    "vasp3d@gmail.com"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "kineticjs": "~5.1.0",
+    "raphael": "~2.1.2"
+  }
+}

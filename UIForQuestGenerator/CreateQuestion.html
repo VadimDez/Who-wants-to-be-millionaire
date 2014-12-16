@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Create Question</title>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="Styles/styles.css" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <table>
+            <tr>
+                <td>
+                    <label class="question">Question</label>
+                </td>
+                <td>
+                    <textarea id="question"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="answer">Answer A</label>
+                </td>
+                <td>
+                    <textarea id="answerA"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="answer">Answer B</label>
+                </td>
+                <td>
+                    <textarea id="answerB"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="answer">Answer C</label>
+                </td>
+                <td>
+                    <textarea id="answerC"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="answer">Answer D</label>
+                </td>
+                <td>
+                    <textarea id="answerD"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="description">Description</label>
+                </td>
+                <td>
+                    <textarea id="description"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Difficulty</label>
+                </td>
+                <td>
+                    <select id="diff">
+                        <option value="1">Easy</option>
+                        <option value="2">Normal</option>
+                        <option value="3">Hard</option>
+                        <option value="4">Bonus</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Correct Answer:</label>
+                </td>
+                <td>
+                    <select id="correct-answer">
+                        <option value="1">Answer A</option>
+                        <option value="2">Answer B</option>
+                        <option value="3">Answer C</option>
+                        <option value="4">Answer D</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button id="create-btn">Generate question</button>
+                </td>
+            </tr>
+            <script src="../js/CreateFile.js"></script>
+        </table>
+    </div>
+</body>
+
+</html>

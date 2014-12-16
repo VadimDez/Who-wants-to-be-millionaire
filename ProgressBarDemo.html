@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/raphael-min.js"></script>
+    <style>
+        svg{
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="raphael"></div>
+    <script>
+        var paper = Raphael('raphael', 600, 300);
+        var progressBar = paper.rect(30, 50, 399, 50, 5);
+        paper.setStart();
+        var zero = paper.text(30, 40, '0');
+        var ten = paper.text(169, 40, '10');
+        var twenty = paper.text(302, 40, '20');
+        var thirty = paper.text(430, 40, '30');
+        var set = paper.setFinish();
+        set.attr({
+            'font-size': '20px',
+        })
+        var progressLevel = paper.rect(31, 51, 1, 48, 5);
+        progressLevel.attr({
+            fill: '#23FF2E',
+        }).animate({
+            fill: '#B50000',
+            width: 398
+        }, 30000)
+        var lineForTenAndTwenty = paper.path('M 169 50 L 169 100 M 302 50 L 302 100');
+    </script>
+</body>
+</html>
