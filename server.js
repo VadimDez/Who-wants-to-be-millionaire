@@ -33,7 +33,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
-require('./js/routes')(app); // configure our routes
+require('./app/routes')(app); // configure our routes
 
 // start app ===============================================
 
