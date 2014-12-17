@@ -20,4 +20,14 @@ angular.module('Millionaire').controller('IndexCtrl', ['$scope', 'PlayerNameFilt
     $scope.leaderBoardBack = function () {
         $('#leaderboard-screen').fadeOut(1000);
     };
+
+    VK.init(function() {
+        // API initialization succeeded
+        // Your code here
+        console.log('success');
+    }, function() {
+        // API initialization failed
+        // Can reload page here
+        console.log('fail');
+    }, '5.27');
 }]);
