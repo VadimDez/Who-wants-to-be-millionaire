@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-12 main">
     <div id="container" class="canvas-div"></div>
     <div id="answer-state" class="canvas-div"></div>
     <div id="wrapper" ng-hide="hideNewGame">
@@ -12,7 +12,7 @@
         <div id="game-screen"></div>
     </div>
     <div class="col-md-12" ng-show="hideNewGame">
-        <div class="col-md-7">
+        <div class="col-md-9 col-sm-8">
             <div class="well">
                 {{ question.question }}
             </div>
@@ -24,6 +24,24 @@
                 <button ng-click="answer('C')">{{ question.answerC }}</button>
                 <button ng-click="answer('D')">{{ question.answerD }}</button>
             </div>
+        </div>
+        <div class="col-md-3 col-sm-4 levels">
+            <div ng-class="[(level+1 == 16) ? 'active' : '', (level >= 16) ? 'more' : 'less']">16</div>
+            <div ng-class="[(level+1 == 15) ? 'active' : '', (level >= 15) ? 'more' : 'less']">15</div>
+            <div ng-class="[(level+1 == 14) ? 'active' : '', (level >= 14) ? 'more' : 'less']">14</div>
+            <div ng-class="[(level+1 == 13) ? 'active' : '', (level >= 13) ? 'more' : 'less']">13</div>
+            <div ng-class="[(level+1 == 12) ? 'active' : '', (level >= 12) ? 'more' : 'less']">12</div>
+            <div ng-class="[(level+1 == 11) ? 'active' : '', (level >= 11) ? 'more' : 'less']">11</div>
+            <div ng-class="[(level+1 == 10) ? 'active' : '', (level >= 10) ? 'more' : 'less']">10</div>
+            <div ng-class="[(level+1 == 9) ? 'active' : '', (level >= 9) ? 'more' : 'less']">9</div>
+            <div ng-class="[(level+1 == 8) ? 'active' : '', (level >= 8) ? 'more' : 'less']">8</div>
+            <div ng-class="[(level+1 == 7) ? 'active' : '', (level >= 7) ? 'more' : 'less']">7</div>
+            <div ng-class="[(level+1 == 6) ? 'active' : '', (level >= 6) ? 'more' : 'less']">6</div>
+            <div ng-class="[(level+1 == 5) ? 'active' : '', (level >= 5) ? 'more' : 'less']">5</div>
+            <div ng-class="[(level+1 == 4) ? 'active' : '', (level >= 4) ? 'more' : 'less']">4</div>
+            <div ng-class="[(level+1 == 3) ? 'active' : '', (level >= 3) ? 'more' : 'less']">3</div>
+            <div ng-class="[(level+1 == 2) ? 'active' : '', (level >= 2) ? 'more' : 'less']">2</div>
+            <div ng-class="[(level+1 == 1) ? 'active' : '', (level >= 1) ? 'more' : 'less']">1</div>
         </div>
     </div>
 </div>

@@ -5,6 +5,10 @@ angular.module('QuestionService', []).factory('Question', ['$http', function ($h
     return {
         create: function (questionData) {
             return $http.post('/api/question', questionData);
+        },
+
+        get16: function () {
+            return $http.get('/api/question');
         }
     }
 }]);
