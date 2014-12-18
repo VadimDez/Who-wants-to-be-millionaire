@@ -4,7 +4,11 @@
 "use strict";
 
 angular.module('Millionaire', [
-    'ngRoute'
+    'ngRoute',
+    'IndexController',
+    'LeaderBoardController',
+    'AddController',
+    'QuestionService'
     ])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider

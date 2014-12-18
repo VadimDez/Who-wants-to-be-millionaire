@@ -3,12 +3,12 @@
  */
 "use strict";
 
-angular.module('Millionaire').controller('IndexCtrl', ['$scope', 'PlayerNameFilter', function ($scope, PlayerNameFilter) {
+angular.module('IndexController', ['PlayerFilter']).controller('IndexCtrl', ['$scope', 'NameFilter', function ($scope, NameFilter) {
     $scope.playerName = '';
     var gameEngine;
 
     $scope.newGame = function () {
-        if (PlayerNameFilter($scope.playerName)) {
+        if (NameFilter($scope.playerName)) {
             $('#wrapper').fadeOut(1000);
             gameEngine = new GameEngine();
             gameEngine.nextQuestion();
@@ -20,14 +20,4 @@ angular.module('Millionaire').controller('IndexCtrl', ['$scope', 'PlayerNameFilt
     $scope.leaderBoardBack = function () {
         $('#leaderboard-screen').fadeOut(1000);
     };
-
-    VK.init(function() {
-        // API initialization succeeded
-        // Your code here
-        console.log('success');
-    }, function() {
-        // API initialization failed
-        // Can reload page here
-        console.log('fail');
-    }, '5.27');
 }]);

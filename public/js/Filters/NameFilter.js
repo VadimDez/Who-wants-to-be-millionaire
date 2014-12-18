@@ -1,7 +1,7 @@
 /**
  * Created by Vadym on 16/12/14.
  */
-angular.module('Millionaire').filter('PlayerName', function () {
+angular.module('PlayerFilter', []).filter('Name', function () {
     return function (string) {
         if (!string)
             return false;
