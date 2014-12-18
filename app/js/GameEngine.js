@@ -1,5 +1,4 @@
-﻿/// <reference path="C:\Users\Nikki\Desktop\Telerik\Ilian\JavaScriptUIAndDOM\JSTeamWork\JSTeamWork\KineticRenderForCorrectAnswer.js" />
-var GameEngine = function () {
+﻿var GameEngine = function () {
     var WIDTH = 800,
         HEIGHT = 600,
         isTimerJokerUsed = false,
@@ -26,6 +25,7 @@ var GameEngine = function () {
     var questionNumber = 0;
     var question = arrWithQuestions[questionNumber];
     var svgRender = new SvgRender();
+
     var drawCurrentAnswer = function (question) {
         setTimeout(function () { svgRender.startProgressBar(whenAnswerIsChoosen); }, 350);
         var arrayWithAnswer = [];

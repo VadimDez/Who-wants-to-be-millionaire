@@ -1,51 +1,41 @@
 ﻿<!DOCTYPE html>
-<html ng-app="Millionaire">
-<head lang="ru">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>Millionaire</title>
 
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+
     <script src="libs/jquery/dist/jquery.min.js" type="text/javascript" language="javascript"></script>
+    <script src="libs/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/kineticjs/kinetic.min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/raphael/raphael-min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/angular/angular.min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/angular-route/angular-route.min.js" type="text/javascript" language="javascript"></script>
 
-    <!-- filters -->
-    <script src="js/Filters/NameFilter.js" type="text/javascript" language="javascript"></script>
-    <!-- Controllers -->
-    <script src="js/Controllers/IndexCtrl.js" type="text/javascript" language="javascript"></script>
-    <script src="js/Controllers/LeaderBoardCtrl.js" type="text/javascript" language="javascript"></script>
-    <script src="js/Controllers/AddCtrl.js" type="text/javascript" language="javascript"></script>
-    <!-- Services -->
-    <script src="js/Services/QuestionService.js" type="text/javascript" language="javascript"></script>
-    <!-- App -->
-    <script src="js/app.js" type="text/javascript" language="javascript"></script>
-
+    <script src="js/angular-app.js" type="text/javascript" language="javascript"></script>
+    <script src="js/app/app.js" type="text/javascript" language="javascript"></script>
 </head>
 
-<body>
-    <a ng-href="/">
-        <button>Home</button>
-    </a>
-    <a ng-href="/leaderboard">
-        <button>Leader Board</button>
-    </a>
-    <a ng-href="/add">
-        <button>Add Question</button>
-    </a>
-    <button onclick="muteAudio()" id="audioControl"><img src="images/unmuted.png" id="sound-icon" /></button>
+<body ng-app="myApp">
+    <div class="row">
+        <div class="col-md-12">
+            <a ng-href="/">
+                <button>Home</button>
+            </a>
+            <a ng-href="/leaderboard">
+                <button>Leader Board</button>
+            </a>
+            <a ng-href="/add">
+                <button>Add Question</button>
+            </a>
+            <button onclick="muteAudio()"><img src="images/unmuted.png" id="sound-icon" /></button>
+        </div>
+    </div>
     <!--<audio autoplay loop id="audio">-->
         <!--<source src="audio/background.mp3" type="audio/mpeg"/>-->
     <!--</audio>-->
     <div ng-view></div>
-
-	<script src="js/audio.js" type="text/javascript" language="javascript"></script>
-    <script src="js/KineticRender.js" type="text/javascript" language="javascript"></script>
-    <script src="js/SVGRender.js" type="text/javascript" language="javascript"></script>
-    <script src="js/QuestionGenerator.js" type="text/javascript" language="javascript"></script>
-    <script src="js/KineticRenderForCorrectAnswer.js" type="text/javascript" language="javascript"></script>
-    <script src="js/leaderboard.js" type="text/javascript" language="javascript"></script>
-    <script src="js/GameEngine.js" type="text/javascript" language="javascript"></script>
 </body>
 </html>
