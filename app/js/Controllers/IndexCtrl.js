@@ -23,8 +23,6 @@ angular
             if (NameFilter($scope.playerName) && available) {
                 $scope.hideNewGame = true;
 
-                //var gameEngine = new GameEngine();
-                //gameEngine.nextQuestion();
                 game();
             }
         };
@@ -42,7 +40,7 @@ angular
                     game();
             } else {
                 $scope.level = 0;
-                game();
+                $scope.hideNewGame = false;
             }
         };
 
