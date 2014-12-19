@@ -16,6 +16,8 @@
     <script src="libs/angular-bootstrap/ui-bootstrap.min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js" type="text/javascript" language="javascript"></script>
 
+    <script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
+    <!-- app -->
     <script src="js/angular-app.js" type="text/javascript" language="javascript"></script>
     <script src="js/app/app.js" type="text/javascript" language="javascript"></script>
 </head>
@@ -39,5 +41,16 @@
         <!--<source src="audio/background.mp3" type="audio/mpeg"/>-->
     <!--</audio>-->
     <div ng-view></div>
+    <script type="text/javascript">
+        VK.init(function() {
+            // API initialization succeeded
+            // Your code here
+            console.log('successed');
+        }, function() {
+            // API initialization failed
+            // Can reload page here
+            console.log('failed');
+        }, '5.27');
+    </script>
 </body>
 </html>
