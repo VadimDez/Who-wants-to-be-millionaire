@@ -2,7 +2,7 @@
  * Created by Vadym on 16/12/14.
  */
 var path = require('path'),
-    Question = require('./Models/Question');
+    Question = require('./js/Models/Question');
 module.exports = function (app) {
 
     // get all

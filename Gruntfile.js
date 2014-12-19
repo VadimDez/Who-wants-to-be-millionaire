@@ -29,6 +29,7 @@ module.exports = function(grunt) {
                     'app/js/Controllers/*.js',
                     'app/js/Filters/*.js',
                     'app/js/Services/*.js',
+                    'app/js/Directives/*.js',
                     'app/js/*.js'
                 ],
                 dest: 'public/js/app.min.js'
@@ -62,6 +63,7 @@ module.exports = function(grunt) {
                     'app/js/Controllers/*.js',
                     'app/js/Filters/*.js',
                     'app/js/Services/*.js',
+                    'app/js/Directives/*.js',
                     'app/js/*.js',
                     'app/styles/*.less',
                     'public/js/app/app.js'

@@ -6,7 +6,9 @@ angular.module('myApp', [ 'ngRoute',
     'IndexController',
     'LeaderBoardController',
     'AddController',
-    'QuestionService'
+    'EndGameController',
+    'QuestionService',
+    'Directives'
 ]).config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {

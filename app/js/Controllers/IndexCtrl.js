@@ -4,8 +4,8 @@
 "use strict";
 
 angular
-    .module('IndexController', ['PlayerFilter', 'QuestionService'])
-    .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', function ($scope, NameFilter, Question) {
+    .module('IndexController', ['PlayerFilter', 'QuestionService', 'ui.bootstrap'])
+    .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', '$modal', '$log', function ($scope, NameFilter, Question, $modal, $log) {
         $scope.playerName = '';
         $scope.hideNewGame = false;
         $scope.level = 0;
@@ -29,16 +29,18 @@ angular
 
         $scope.answer = function (Letter) {
 
-            if (question && $.inArray(Letter, ['A', 'B', 'C', 'D']) == -1 )
+            if (available && question && $.inArray(Letter, ['A', 'B', 'C', 'D']) == -1)
                 return false;
 
             if (question['answer' + Letter] == question.correctAnswer) {
                 $scope.level++;
                 if ($scope.level >= 16) {
-                    // won
-                } else
+                    launchModal(true); // won
+                } else {
                     game();
+                }
             } else {
+                launchModal(false);
                 $scope.level = 0;
                 $scope.hideNewGame = false;
             }
@@ -55,4 +57,27 @@ angular
                 answerD: question.answerD
             };
         }
+
+        //
+        $scope.items = ['item1', 'item2', 'item3'];
+
+        function launchModal(won) {
+            var modalInstance = $modal.open({
+                templateUrl: (won) ? '/views/modal_won.html' : '/views/modal_lost.html',
+                controller: 'EndGameCtrl',
+                size: 'lg',
+                resolve: {
+                    won: function () {
+                        return won;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
+
 }]);
