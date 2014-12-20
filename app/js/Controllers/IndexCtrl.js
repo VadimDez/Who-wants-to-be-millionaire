@@ -5,7 +5,7 @@
 
 angular
     .module('IndexController', ['PlayerFilter', 'QuestionService', 'ui.bootstrap'])
-    .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', '$modal', '$log', function ($scope, NameFilter, Question, $modal, $log) {
+    .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', '$modal', function ($scope, NameFilter, Question, $modal) {
         $scope.playerName = '';
         $scope.hideNewGame = false;
         $scope.level = 0;
@@ -32,7 +32,7 @@ angular
             if (available && question && $.inArray(Letter, ['A', 'B', 'C', 'D']) == -1)
                 return false;
 
-            if (question['answer' + Letter] == question.correctAnswer) {
+            if (Letter == window.atob(question.correctAnswer)) {
                 $scope.level++;
                 if ($scope.level >= 16) {
                     launchModal(true); // won
@@ -58,9 +58,6 @@ angular
             };
         }
 
-        //
-        $scope.items = ['item1', 'item2', 'item3'];
-
         function launchModal(won) {
             var modalInstance = $modal.open({
                 templateUrl: (won) ? '/views/modal_won.html' : '/views/modal_lost.html',
@@ -76,8 +73,8 @@ angular
             modalInstance.result.then(function () {
 
             }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
+                // dismissed
             });
-        };
+        }
 
 }]);

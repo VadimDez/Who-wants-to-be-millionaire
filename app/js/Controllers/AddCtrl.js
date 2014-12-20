@@ -6,6 +6,7 @@
 angular
     .module('AddController', ['QuestionService'])
     .controller('AddCtrl', ['$scope', 'Question', function ($scope, Question) {
+        $scope.correctAnswer = 'A'; // default
 
         $scope.add = function () {
             Question.create({

@@ -2,7 +2,8 @@
  * Created by Vadym on 16/12/14.
  */
 var path = require('path'),
-    Question = require('./js/Models/Question');
+    Question = require('./js/Models/Question'),
+    btoa = require('btoa');
 module.exports = function (app) {
 
     // get all
@@ -24,7 +25,7 @@ module.exports = function (app) {
             answerB:        req.body.answerB,
             answerC:        req.body.answerC,
             answerD:        req.body.answerD,
-            correctAnswer:  req.body.correctAnswer
+            correctAnswer:  btoa(req.body.correctAnswer)
         }, function (err, question) {
             if (err)
                 res.send(err);
