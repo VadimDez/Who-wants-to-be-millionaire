@@ -4,16 +4,20 @@
 var path = require('path'),
     Question = require('./js/Models/Question'),
     btoa = require('btoa');
+
 module.exports = function (app) {
 
     // get all
-    app.get('/api/question', function (req, res) {
+    app.get('/api/question/get16', function (req, res) {
 
-        Question.find(function (err, quesstions) {
-            if (err)
-                res.send(err);
+        Question
+            .findRandom()
+            .limit(16)
+            .exec(function (err, quesstions) {
+                if (err)
+                    res.send(err);
 
-            res.json(quesstions);
+                res.json(quesstions);
         });
     });
 

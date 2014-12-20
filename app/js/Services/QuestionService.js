@@ -8,7 +8,7 @@ angular.module('QuestionService', []).factory('Question', ['$http', function ($h
         },
 
         get16: function () {
-            return $http.get('/api/question');
+            return $http.get('/api/question/get16');
         }
     }
 }]);
