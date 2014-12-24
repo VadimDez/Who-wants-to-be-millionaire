@@ -3,13 +3,16 @@
  */
 "use strict";
 angular.module('myApp', [ 'ngRoute',
+    'ngAudio',
+    'AudioController',
     'IndexController',
     'LeaderBoardController',
     'AddController',
     'EndGameController',
     'QuestionService',
     'Directives'
-]).config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+]).config(['$routeProvider', '$locationProvider',  function ($routeProvider, $locationProvider) {
+
     $routeProvider
         .when('/', {
             templateUrl: 'views/index.html',

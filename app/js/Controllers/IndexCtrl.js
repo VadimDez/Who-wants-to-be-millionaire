@@ -4,8 +4,13 @@
 "use strict";
 
 angular
-    .module('IndexController', ['PlayerFilter', 'QuestionService', 'ui.bootstrap'])
-    .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', '$modal', function ($scope, NameFilter, Question, $modal) {
+    .module('IndexController', [
+        'PlayerFilter',
+        'QuestionService',
+        'ui.bootstrap',
+        'ngAudio'
+    ])
+    .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', function ($scope, NameFilter, Question, $modal, ngAudio) {
         $scope.playerName = '';
         $scope.hideNewGame = false;
         $scope.level = 0;

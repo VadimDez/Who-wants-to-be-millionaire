@@ -1,26 +1,27 @@
-<div class="col-md-12">
+<div class="col-md-12 AddCtrl container">
     <form ng-submit="add()">
         <div class="col-md-12">
+            <h1>Add new question</h1>
             <label for="question">Question:</label>
-            <input id="question" ng-model="question">
-        </div>
-        <div class="col-md-12">
-            <label for="answerA">Answer A:</label>
-            <input id="answerA" ng-model="answerA">
-        </div>
-        <div class="col-md-12">
-            <label for="answerB">Answer B:</label>
-            <input id="answerB" ng-model="answerB">
-        </div>
-        <div class="col-md-12">
-            <label for="answerC">Answer C:</label>
-            <input id="answerC" ng-model="answerC">
-        </div>
-        <div class="col-md-12">
-            <label for="answerD">Answer D:</label>
-            <input id="answerD" ng-model="answerD">
-        </div>
-        <div class="col-md-12">
+            <input class="form-control" placeholder="Question..." id="question" ng-model="question">
+            <label for="answerA">Answers:</label>
+            <div class="input-group">
+                <span class="input-group-addon" id="answerA">A</span>
+                <input type="text" class="form-control" placeholder="Answer A" aria-describedby="answerA" ng-model="answerA">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="answerB">B</span>
+                <input type="text" class="form-control" placeholder="Answer B" aria-describedby="answerB" ng-model="answerB">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="answerC">C</span>
+                <input type="text" class="form-control" placeholder="answer C" aria-describedby="answerC" ng-model="answerC">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="answerD">D</span>
+                <input type="text" class="form-control" placeholder="Answer D" aria-describedby="answerD" ng-model="answerD">
+            </div>
+
             <label for="correctAnswer">Correct answer:</label>
             <select id="correctAnswer" ng-model="correctAnswer">
                 <option value="A">A</option>
@@ -29,7 +30,9 @@
                 <option value="D">D</option>
             </select>
         </div>
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> Add Question</button>
+        </div>
 
-        <button type="submit">Add</button>
     </form>
 </div>

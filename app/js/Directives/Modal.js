@@ -6,7 +6,7 @@ angular.module('Directives', []).directive('openModal',
         return {
             link: function (scope, element, attrs) {
                 function openModal() {
-                    console.log('here');
+
                     var $element = angular.element('#myModal');
                     //var ctrl = angular.controller();
                     //ctrl.

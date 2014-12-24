@@ -1,11 +1,120 @@
-.main {
-    .levels {
-        div {
-            color: #808080;
-            &.active, &.more {
-                color: #000000;
-                font-weight: bold;
+body {
+    background-color: #EFEFEF;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 100;
+
+    label {
+        font-weight: 100;
+    }
+    h1 {
+        font-size: 25px;
+        font-weight: 200;
+    }
+    .footer {
+        padding-top: 20px;
+        text-align: center;
+        font-size: 14px;
+    }
+    .container {
+        margin-top: 15px;
+        padding-top: 10px;
+        padding-bottom: 15px;
+        border-radius: 20px;
+        border: 1px solid #fff;
+        background-color: #fff;
+    }
+
+    // MENU
+    .menu {
+        height: 70px;
+        background-color: #54D6FF;
+
+        a {
+            width: 30px;
+            height: 30px;
+            text-decoration: none;
+            img {
+                padding: 20px;
+            }
+            &:hover img {
+                opacity: 0.8;
+            }
+        }
+        .audioCtrl {
+            width: 201px;
+            .audio-range {
+                padding-right: 0;
+                float: left;
+                margin-top: 29px;
+            }
+            .turnOn {
+                margin-left: 129px;
+            }
+            .turnOn, .turnOff {
+                cursor: pointer;
+            }
+            @media (max-width: 480px) {
+                width: 122px;
+                .audio-range {
+                    width: 50px;
+                }
+                .turnOn {
+                    margin-left: 50px;
+                }
+            }
+        }
+    }
+
+    // Index Controller
+    .IndexCtrl {
+        .newGame {
+            margin-top: 10px;
+        }
+        .well {
+            border: none;
+            background-color: #fff;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .answers {
+            .btn-answer {
+                color: #fff;
+                text-align: left;
+                padding: 10px;
+                margin-bottom: 10px;
+                background-color: #54D6FF;
+                &:hover {
+                    background-color: #89E3FF;
+                }
+                &.col-md-6 {
+                    width: 48%;
+                    &.btn-answer-left {
+                        margin-right: 1%;
+                    }
+                }
+            }
+        }
+        .levels {
+            div {
+                color: #808080;
+                &.active, &.more {
+                    color: #000000;
+                    font-weight: 200;
+                }
+            }
+        }
+    }
+
+    // Add Controller
+    .AddCtrl {
+        form {
+            .input-group {
+                margin-bottom: 10px;
             }
         }
     }
 }
+

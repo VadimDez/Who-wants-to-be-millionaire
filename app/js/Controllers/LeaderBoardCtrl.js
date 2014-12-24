@@ -4,5 +4,5 @@
 "use strict";
 
 angular.module('LeaderBoardController', []).controller('LeaderBoardCtrl', ['$scope', function ($scope) {
-    console.log('here?');
+
 }]);

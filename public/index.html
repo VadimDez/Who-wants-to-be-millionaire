@@ -9,48 +9,64 @@
 
     <script src="libs/jquery/dist/jquery.min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" language="javascript"></script>
-    <script src="libs/kineticjs/kinetic.min.js" type="text/javascript" language="javascript"></script>
-    <script src="libs/raphael/raphael-min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/angular/angular.min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/angular-route/angular-route.min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/angular-bootstrap/ui-bootstrap.min.js" type="text/javascript" language="javascript"></script>
     <script src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js" type="text/javascript" language="javascript"></script>
+    <script src="libs/angular-audio/app/angular.audio.js" type="text/javascript" language="javascript"></script>
 
-    <script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
+    <!--<script src="//vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>-->
     <!-- app -->
     <script src="js/angular-app.js" type="text/javascript" language="javascript"></script>
     <script src="js/app/app.js" type="text/javascript" language="javascript"></script>
 </head>
 
-<body ng-app="myApp">
-    <div class="row">
+<body ng-app="myApp" class="col-md-12">
+    <div class="row menu">
         <div class="col-md-12">
+            <div ng-controller="AudioCtrl" class="pull-right audioCtrl">
+                <div ng-show="turned" class="audio-range">
+                    <input type="range" min="0" max="1" step="0.01" ng-model="music.volume">
+                </div>
+                <div>
+                    <a ng-click="turnOn()" ng-hide="turned" class="turnOn">
+                        <img src="/images/no_sound.png">
+                    </a>
+                    <a ng-click="turnOff()" ng-show="turned" class="turnOff">
+                        <img src="/images/sound.png">
+                    </a>
+                </div>
+            </div>
             <a ng-href="/">
-                <button>Home</button>
+                <img src="/images/play.png">
             </a>
             <a ng-href="/leaderboard">
-                <button>Leader Board</button>
+                <img src="/images/board.png">
             </a>
             <a ng-href="/add">
-                <button>Add Question</button>
+                <img src="/images/add.png">
             </a>
-            <button onclick="muteAudio()"><img src="images/unmuted.png" id="sound-icon" /></button>
         </div>
     </div>
     <!--<audio autoplay loop id="audio">-->
         <!--<source src="audio/background.mp3" type="audio/mpeg"/>-->
     <!--</audio>-->
     <div ng-view></div>
-    <script type="text/javascript">
-        VK.init(function() {
-            // API initialization succeeded
-            // Your code here
-            console.log('successed');
-        }, function() {
-            // API initialization failed
-            // Can reload page here
-            console.log('failed');
-        }, '5.27');
-    </script>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="footer">Vadym Yatsyuk - 2014</div>
+        </div>
+    </div>
+    <!--<script type="text/javascript">-->
+        <!--VK.init(function() {-->
+            <!--// API initialization succeeded-->
+            <!--// Your code here-->
+            <!--console.log('successed');-->
+        <!--}, function() {-->
+            <!--// API initialization failed-->
+            <!--// Can reload page here-->
+            <!--console.log('failed');-->
+        <!--}, '5.27');-->
+    <!--</script>-->
 </body>
 </html>
