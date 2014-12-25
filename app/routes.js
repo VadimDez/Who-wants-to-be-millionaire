@@ -43,7 +43,7 @@ module.exports = function (app) {
     app.get('/api/player', function (req, res) {
         Player
             .find()
-            .sort({points: 'desc'})
+            .sort({points: 'desc', date: 'desc'})
             .limit(16)
             .exec(function (err, players) {
                 if (err)

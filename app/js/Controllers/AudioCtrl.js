@@ -9,7 +9,7 @@ angular
     .controller('AudioCtrl', ['$scope', 'ngAudio', 'AudioPlayer', function ($scope, ngAudio, AudioPlayer) {
         $scope.turned = false;
         var url = '/audio/background.mp3';
-        
+
         if (AudioPlayer[url]) {
             $scope.music = AudioPlayer[url];
         } else {
