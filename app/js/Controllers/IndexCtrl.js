@@ -20,7 +20,8 @@ angular
             questions = null,
             available = false,
             soundNext = audio('/audio/Page_Turn.wav'),
-            soundLose = audio('/audio/Blop.wav');
+            soundLose = audio('/audio/Blop.wav'),
+            soundBg = audio('/audio/Blop.wav');
 
         Question.get16().success(function (_questions) {
             if (_questions.length === 16)

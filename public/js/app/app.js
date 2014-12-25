@@ -34,4 +34,5 @@ angular.module('Millionaire', [ 'ngRoute',
         enabled: true,
         requireBase: false
     });
-}]);
+}])
+    .value("AudioPlayer",{});
