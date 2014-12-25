@@ -7,6 +7,7 @@ angular
     .module('AddController', ['QuestionService'])
     .controller('AddCtrl', ['$scope', 'Question', function ($scope, Question) {
         $scope.correctAnswer = 'A'; // default
+        $scope.added = false;
 
         $scope.add = function () {
             Question.create({
@@ -17,7 +18,13 @@ angular
                 answerD: $scope.answerD,
                 correctAnswer: $scope.correctAnswer
             }).success(function () {
-                console.log('success');
+                $scope.added = true;
             });
+        };
+
+        $scope.addMore = function () {
+            $scope.added = false;
+            $scope.question = $scope.answerA = $scope.answerB = $scope.answerC = $scope.answerD = '';
+            $scope.correctAnswer = 'A';
         };
 }]);

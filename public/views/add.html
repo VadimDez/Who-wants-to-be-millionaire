@@ -1,5 +1,5 @@
 <div class="col-md-12 AddCtrl container">
-    <form ng-submit="add()">
+    <form ng-submit="add()" ng-hide="added">
         <div class="col-md-12">
             <h1>Add new question</h1>
             <label for="question">Question:</label>
@@ -33,6 +33,11 @@
         <div class="col-md-12">
             <button type="submit" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> Add Question</button>
         </div>
-
     </form>
+    <div class="col-md-12" ng-show="added">
+        <div class="col-md-4 col-md-offset-4">
+            <h1>Your question was added!</h1>
+            <button class="btn btn-success pull-right" ng-click="addMore()">Add more</button>
+        </div>
+    </div>
 </div>
