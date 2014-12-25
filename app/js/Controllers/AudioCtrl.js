@@ -2,23 +2,33 @@
  * Created by Vadym on 24/12/14.
  */
 angular
-    .module('AudioController', ['ngAudio'])
-    .controller('AudioCtrl', ['$scope', 'ngAudio', function ($scope, ngAudio) {
+    .module('AudioController', [
+        'ngAudio',
+        'AudioPlayerModule'
+    ])
+    .controller('AudioCtrl', ['$scope', 'ngAudio', 'AudioPlayer', function ($scope, ngAudio, AudioPlayer) {
         $scope.turned = false;
-        $scope.music = ngAudio.load('/audio/background.mp3');
-        $scope.music.volume = 0.5;
-        $scope.music.loop = true;
-        //$scope.music.play();
+        var url = '/audio/background.mp3',
+            music;
+
+        if (AudioPlayer[url]) {
+            music = AudioPlayer[url];
+        } else {
+            music = ngAudio.load(url);
+            music.volume = 0.5;
+            music.loop = true;
+            AudioPlayer[url] = music;
+        }
 
         // turn off
         $scope.turnOff = function () {
-            $scope.music.pause();
+            music.pause();
             $scope.turned = false;
         };
 
         // turn on
         $scope.turnOn = function () {
-            $scope.music.play();
+            music.play();
             $scope.turned = true;
         };
 }]);

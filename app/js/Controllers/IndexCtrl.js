@@ -8,9 +8,10 @@ angular
         'PlayerFilter',
         'QuestionService',
         'ui.bootstrap',
-        'ngAudio'
+        'ngAudio',
+        'AudioPlayerModule'
     ])
-    .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', function ($scope, NameFilter, Question, $modal, ngAudio) {
+    .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', 'AudioPlayer', function ($scope, NameFilter, Question, $modal, ngAudio, AudioPlayer) {
         $scope.playerName = '';
         $scope.hideNewGame = false;
         $scope.level = 0;
@@ -18,10 +19,8 @@ angular
         var question = null,
             questions = null,
             available = false,
-            nextQuestionSound = ngAudio.load('/audio/Page_Turn.wav'),
-            sound = ngAudio.load('/audio/Blop.wav');
-
-        nextQuestionSound.volume = 0.5;
+            soundNext = audio('/audio/Page_Turn.wav'),
+            soundLose = audio('/audio/Blop.wav');
 
         Question.get16().success(function (_questions) {
             if (_questions.length === 16)
@@ -61,10 +60,10 @@ angular
         // next question
         function game() {
 
-            if (nextQuestionSound.currentTime > 0)
-                nextQuestionSound.currentTime = 0;
+            if (soundNext.currentTime > 0)
+                soundNext.currentTime = 0;
 
-            nextQuestionSound.play();
+            soundNext.play();
             question = questions[$scope.level];
 
             $scope.question = {
@@ -77,7 +76,7 @@ angular
         }
 
         function launchModal(won) {
-            sound.play();
+            soundLose.play();
             
             var modalInstance = $modal.open({
                 templateUrl: (won) ? '/views/modal_won.html' : '/views/modal_lost.html',
@@ -97,4 +96,14 @@ angular
             });
         }
 
+        function audio(url) {
+            if (AudioPlayer[url]) {
+                return AudioPlayer[url];
+            } else {
+                var sound = ngAudio.load(url);
+                sound.volume = 0.5;
+                AudioPlayer[url] = sound;
+                return sound;
+            }
+        }
 }]);
