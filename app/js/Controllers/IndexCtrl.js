@@ -14,9 +14,14 @@ angular
         $scope.playerName = '';
         $scope.hideNewGame = false;
         $scope.level = 0;
+
         var question = null,
             questions = null,
-            available = false;
+            available = false,
+            nextQuestionSound = ngAudio.load('/audio/Page_Turn.wav'),
+            sound = ngAudio.load('/audio/Blop.wav');
+
+        nextQuestionSound.volume = 0.5;
 
         Question.get16().success(function (_questions) {
             if (_questions.length === 16)
@@ -24,6 +29,7 @@ angular
             questions = _questions;
         });
 
+        // on new game
         $scope.newGame = function () {
             if (NameFilter($scope.playerName) && available) {
                 $scope.hideNewGame = true;
@@ -32,6 +38,7 @@ angular
             }
         };
 
+        // on answer
         $scope.answer = function (Letter) {
 
             if (available && question && $.inArray(Letter, ['A', 'B', 'C', 'D']) == -1)
@@ -51,7 +58,13 @@ angular
             }
         };
 
+        // next question
         function game() {
+
+            if (nextQuestionSound.currentTime > 0)
+                nextQuestionSound.currentTime = 0;
+
+            nextQuestionSound.play();
             question = questions[$scope.level];
 
             $scope.question = {
@@ -64,10 +77,12 @@ angular
         }
 
         function launchModal(won) {
+            sound.play();
+            
             var modalInstance = $modal.open({
                 templateUrl: (won) ? '/views/modal_won.html' : '/views/modal_lost.html',
                 controller: 'EndGameCtrl',
-                size: 'lg',
+                size: 'sm',
                 resolve: {
                     won: function () {
                         return won;
