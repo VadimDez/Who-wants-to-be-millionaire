@@ -30,10 +30,10 @@
                 </div>
                 <div>
                     <a ng-click="turnOn()" ng-hide="turned" class="turnOn">
-                        <img src="/images/no_sound.png">
+                        <img src="/images/no_sound.png" popover="Turn on music" popover-trigger="mouseenter" popover-placement="left">
                     </a>
                     <a ng-click="turnOff()" ng-show="turned" class="turnOff">
-                        <img src="/images/sound.png">
+                        <img src="/images/sound.png" popover="Turn off music" popover-trigger="mouseenter" popover-placement="left">
                     </a>
                 </div>
             </div>
@@ -48,9 +48,6 @@
             </a>
         </div>
     </div>
-    <!--<audio autoplay loop id="audio">-->
-        <!--<source src="audio/background.mp3" type="audio/mpeg"/>-->
-    <!--</audio>-->
     <div ng-view></div>
     <div class="row">
         <div class="col-md-12">

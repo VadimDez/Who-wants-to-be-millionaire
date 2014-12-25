@@ -10,7 +10,7 @@
 
     <div class="row" ng-show="hideNewGame">
         <div class="col-md-12">
-            <div class="col-md-9 col-sm-8">
+            <div class="col-md-11 col-sm-11">
                 <div class="well">
                     {{ question.question }}
                 </div>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-4 levels">
+            <div class="col-md-1 levels">
                 <div ng-class="[(level+1 == 16) ? 'active' : '', (level >= 16) ? 'more' : 'less']">16</div>
                 <div ng-class="[(level+1 == 15) ? 'active' : '', (level >= 15) ? 'more' : 'less']">15</div>
                 <div ng-class="[(level+1 == 14) ? 'active' : '', (level >= 14) ? 'more' : 'less']">14</div>

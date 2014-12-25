@@ -47,12 +47,17 @@ body {
                 padding-right: 0;
                 float: left;
                 margin-top: 29px;
+                width: 129px;
             }
             .turnOn {
                 margin-left: 129px;
+                .popover.left {
+                    margin-right: 0;
+                }
             }
             .turnOn, .turnOff {
                 cursor: pointer;
+
             }
             @media (max-width: 480px) {
                 width: 122px;
@@ -98,11 +103,20 @@ body {
             }
         }
         .levels {
+            border-left: 1px solid #cecece;
             div {
                 color: #808080;
-                &.active, &.more {
+                text-align: center;
+                border-radius: 30px;
+                width: 25px;
+                &.active {
                     color: #000000;
                     font-weight: 200;
+                    border: 1px solid #808080;
+                }
+                &.more {
+                    color: #ffffff;
+                    background-color: #5cb85c;
                 }
             }
         }
