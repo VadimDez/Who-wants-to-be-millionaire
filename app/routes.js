@@ -3,6 +3,7 @@
  */
 var path = require('path'),
     Question = require('./js/Models/Question'),
+    Player = require('./js/Models/Player'),
     btoa = require('btoa');
 
 module.exports = function (app) {
@@ -13,11 +14,11 @@ module.exports = function (app) {
         Question
             .findRandom()
             .limit(16)
-            .exec(function (err, quesstions) {
+            .exec(function (err, questions) {
                 if (err)
                     res.send(err);
 
-                res.json(quesstions);
+                res.json(questions);
         });
     });
 
@@ -35,6 +36,33 @@ module.exports = function (app) {
                 res.send(err);
 
             res.json(question);
+        });
+    });
+
+    // get players
+    app.get('/api/player', function (req, res) {
+        Player
+            .find()
+            .sort({points: 'desc'})
+            .limit(16)
+            .exec(function (err, players) {
+                if (err)
+                    res.send(err);
+
+                res.json(players);
+            });
+    });
+
+    // save result
+    app.post('/api/player', function (req, res) {
+        Player.create({
+            name: req.body.name,
+            points: req.body.points
+        }, function (err, player) {
+            if (err)
+                res.send(err);
+
+            res.json(player)
         });
     });
 

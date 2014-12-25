@@ -9,6 +9,7 @@ angular.module('Millionaire', [ 'ngRoute',
     'LeaderBoardController',
     'AddController',
     'EndGameController',
+    'PlayerService',
     'QuestionService',
     'Directives'
 ]).config(['$routeProvider', '$locationProvider',  function ($routeProvider, $locationProvider) {

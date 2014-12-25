@@ -1,6 +1,19 @@
 <div class="col-md-12 LeaderBoardCtrl container">
     <h1 class="col-md-12">Leader Board</h1>
     <div class="col-md-12">
-        Empty
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Player Name</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="player in players">
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.points }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
