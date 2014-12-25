@@ -8,27 +8,26 @@ angular
     ])
     .controller('AudioCtrl', ['$scope', 'ngAudio', 'AudioPlayer', function ($scope, ngAudio, AudioPlayer) {
         $scope.turned = false;
-        var url = '/audio/background.mp3',
-            music;
-
+        var url = '/audio/background.mp3';
+        
         if (AudioPlayer[url]) {
-            music = AudioPlayer[url];
+            $scope.music = AudioPlayer[url];
         } else {
-            music = ngAudio.load(url);
-            music.volume = 0.5;
-            music.loop = true;
-            AudioPlayer[url] = music;
+            $scope.music = ngAudio.load(url);
+            $scope.music.volume = 0.5;
+            $scope.music.loop = true;
+            AudioPlayer[url] = $scope.music;
         }
 
         // turn off
         $scope.turnOff = function () {
-            music.pause();
+            $scope.music.pause();
             $scope.turned = false;
         };
 
         // turn on
         $scope.turnOn = function () {
-            music.play();
+            $scope.music.play();
             $scope.turned = true;
         };
 }]);
