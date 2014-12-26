@@ -1,5 +1,5 @@
-<div class="col-md-12 IndexCtrl container">
-    <div class="col-md-12" ng-hide="hideNewGame">
+<div class="IndexCtrl">
+    <div class="col-md-12 container" ng-hide="hideNewGame">
         <h1>New Game</h1>
         <div id="input-section">
             <label for="input-name">Your name: </label>
@@ -7,44 +7,42 @@
         </div>
         <button class="btn btn-success pull-right newGame" ng-click="newGame()">Start</button>
     </div>
-
-    <div class="row" ng-show="hideNewGame">
-        <div class="col-md-12">
-            <div class="col-md-11 col-sm-11">
+    <div class="col-md-12">
+        <div class="row" ng-show="hideNewGame">
+            <div class="col-md-10 col-sm-10 container">
                 <div class="well">
                     {{ question.question }}
                 </div>
                 <div class="row answers">
                     <div class="col-md-12">
-                        <button ng-click="answer('A')" class="btn btn-answer btn-answer-left col-md-6 col-sm-6">{{ question.answerA }}</button>
-                        <button ng-click="answer('B')" class="btn btn-answer col-md-6 col-sm-6">{{ question.answerB }}</button>
+                        <button ng-click="answer('A')" class="btn btn-answer btn-answer-left col-md-6 col-sm-6 col-xs-12" ng-class="[(showA) ? '' : 'halfHidden']">{{ question.answerA }}</button>
+                        <button ng-click="answer('B')" class="btn btn-answer col-md-6 col-sm-6 col-xs-12" ng-class="[(showB) ? '' : 'halfHidden']">{{ question.answerB }}</button>
                     </div>
                 </div>
                 <div class="row answers">
                     <div class="col-md-12">
-                        <button ng-click="answer('C')" class="btn btn-answer btn-answer-left col-md-6 col-sm-6">{{ question.answerC }}</button>
-                        <button ng-click="answer('D')" class="btn btn-answer col-md-6 col-sm-6">{{ question.answerD }}</button>
+                        <button ng-click="answer('C')" class="btn btn-answer btn-answer-left col-md-6 col-sm-6 col-xs-12" ng-class="[(showC) ? '' : 'halfHidden']">{{ question.answerC }}</button>
+                        <button ng-click="answer('D')" class="btn btn-answer col-md-6 col-sm-6 col-xs-12" ng-class="[(showD) ? '' : 'halfHidden']">{{ question.answerD }}</button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-1 levels">
-                <div ng-class="[(level+1 == 16) ? 'active' : '', (level >= 16) ? 'more' : 'less']">16</div>
-                <div ng-class="[(level+1 == 15) ? 'active' : '', (level >= 15) ? 'more' : 'less']">15</div>
-                <div ng-class="[(level+1 == 14) ? 'active' : '', (level >= 14) ? 'more' : 'less']">14</div>
-                <div ng-class="[(level+1 == 13) ? 'active' : '', (level >= 13) ? 'more' : 'less']">13</div>
-                <div ng-class="[(level+1 == 12) ? 'active' : '', (level >= 12) ? 'more' : 'less']">12</div>
-                <div ng-class="[(level+1 == 11) ? 'active' : '', (level >= 11) ? 'more' : 'less']">11</div>
-                <div ng-class="[(level+1 == 10) ? 'active' : '', (level >= 10) ? 'more' : 'less']">10</div>
-                <div ng-class="[(level+1 == 9) ? 'active' : '', (level >= 9) ? 'more' : 'less']">9</div>
-                <div ng-class="[(level+1 == 8) ? 'active' : '', (level >= 8) ? 'more' : 'less']">8</div>
-                <div ng-class="[(level+1 == 7) ? 'active' : '', (level >= 7) ? 'more' : 'less']">7</div>
-                <div ng-class="[(level+1 == 6) ? 'active' : '', (level >= 6) ? 'more' : 'less']">6</div>
-                <div ng-class="[(level+1 == 5) ? 'active' : '', (level >= 5) ? 'more' : 'less']">5</div>
-                <div ng-class="[(level+1 == 4) ? 'active' : '', (level >= 4) ? 'more' : 'less']">4</div>
-                <div ng-class="[(level+1 == 3) ? 'active' : '', (level >= 3) ? 'more' : 'less']">3</div>
-                <div ng-class="[(level+1 == 2) ? 'active' : '', (level >= 2) ? 'more' : 'less']">2</div>
-                <div ng-class="[(level+1 == 1) ? 'active' : '', (level >= 1) ? 'more' : 'less']">1</div>
+            <div class="col-md-2 col-sm-2 sideMenu">
+                <h3>Help:</h3>
+                <div class="col-md-12 help">
+                    <div class="row">
+                        <button class="btn btn-success col-md-12 col-xs-12" ng-click="helpHalf()">50:50</button>
+                    </div>
+                </div>
+                <h3>Progress:</h3>
+                <div class="col-md-12 levels">
+                    <div class="row">
+                        <div ng-repeat="i in [16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]" ng-class="[(level == i-1) ? 'active' : '', (level >= i) ? 'more' : 'less', (i == 1) ? 'col-xs-12' : 'col-xs-4']" class="level col-md-12 col-sm-12">
+                            <div>{{ i }}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
 </div>

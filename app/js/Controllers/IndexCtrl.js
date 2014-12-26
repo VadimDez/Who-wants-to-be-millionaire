@@ -60,6 +60,7 @@ angular
 
         // next question
         function game() {
+            setAllAnswersAvailable(true);
 
             if (soundNext.currentTime > 0)
                 soundNext.currentTime = 0;
@@ -113,4 +114,23 @@ angular
                 return sound;
             }
         }
+
+        function setAllAnswersAvailable(value) {
+            $scope.showA = $scope.showB = $scope.showC = $scope.showD = value;
+        }
+
+        // help 50/50
+        $scope.helpHalf = function () {
+            if (!question)
+                return false;
+
+            var correct = [window.atob(question.correctAnswer)],
+                answers = ['A','B','C','D'];
+            answers.splice($.inArray(window.atob(question.correctAnswer), answers), 1); // remove correct
+            correct.push(answers[Math.floor(Math.random() * answers.length)]); // push random
+            setAllAnswersAvailable(false); // disable all answers
+
+            for (var c=0; c < 2; c++) // make correct & one random answer available
+                $scope['show' + correct[c]] = true;
+        };
 }]);
