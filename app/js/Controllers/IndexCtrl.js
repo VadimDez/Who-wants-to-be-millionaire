@@ -13,8 +13,7 @@ angular
     ])
     .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', 'AudioPlayer', function ($scope, NameFilter, Question, $modal, ngAudio, AudioPlayer) {
         $scope.playerName = '';
-        $scope.hideNewGame = false;
-        $scope.level = 0;
+        setVars();
 
         var question = null,
             questions = null,
@@ -53,8 +52,7 @@ angular
                 }
             } else {
                 launchModal(false);
-                $scope.level = 0;
-                $scope.hideNewGame = false;
+                setVars();
             }
         };
 
@@ -115,14 +113,32 @@ angular
             }
         }
 
+        /**
+         * Set answer availability
+         * @param {boolean} value
+         */
         function setAllAnswersAvailable(value) {
             $scope.showA = $scope.showB = $scope.showC = $scope.showD = value;
         }
 
-        // help 50/50
+        /**
+         * Set new game vars
+         */
+        function setVars() {
+            $scope.level = 0;
+            $scope.hideNewGame = false;
+            $scope.helpHalfAvailable = true;
+        }
+
+        /**
+         * 50:50 help
+         * @returns {boolean}
+         */
         $scope.helpHalf = function () {
-            if (!question)
+            if (!question || !$scope.helpHalfAvailable)
                 return false;
+
+            $scope.helpHalfAvailable = false;
 
             var correct = [window.atob(question.correctAnswer)],
                 answers = ['A','B','C','D'];

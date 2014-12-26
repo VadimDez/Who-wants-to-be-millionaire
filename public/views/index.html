@@ -30,7 +30,7 @@
                 <h3>Help:</h3>
                 <div class="col-md-12 help">
                     <div class="row">
-                        <button class="btn btn-success col-md-12 col-xs-12" ng-click="helpHalf()">50:50</button>
+                        <button class="btn col-md-12 col-xs-12" ng-class="[(helpHalfAvailable) ? 'btn-success' : '']" ng-click="helpHalf()">50:50</button>
                     </div>
                 </div>
                 <h3>Progress:</h3>
