@@ -2,11 +2,11 @@
  * Created by Vadym on 24/12/14.
  */
 angular
-    .module('AudioController', [
+    .module('audioCtrl', [
         'ngAudio',
-        'AudioPlayerModule'
+        'audioPlayerModule'
     ])
-    .controller('AudioCtrl', ['$scope', 'ngAudio', 'AudioPlayer', function ($scope, ngAudio, AudioPlayer) {
+    .controller('AudioController', ['$scope', 'ngAudio', 'AudioPlayer', function ($scope, ngAudio, AudioPlayer) {
         $scope.turned = false;
         var url = '/audio/background.mp3';
 

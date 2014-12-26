@@ -1,7 +1,7 @@
 /**
  * Created by Vadym on 19/12/14.
  */
-angular.module('Directives', []).directive('openModal',
+angular.module('directives', []).directive('openModal',
     function () {
         return {
             link: function (scope, element, attrs) {

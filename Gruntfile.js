@@ -48,6 +48,7 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     //'bower_components/angular/angular.min.js',
+                    'node_modules/angular-animate/angular-animate.min.js',
                     'public/js/app.min.js'
                 ],
                 dest: 'public/js/angular-app.js'
@@ -76,6 +77,7 @@ module.exports = function(grunt) {
             html: {
                 files: [
                     'public/views/*.html',
+                    'public/views/modals/*.html',
                     'public/*.html'
                 ]
             }

@@ -3,13 +3,11 @@
  */
 "use strict";
 
-angular.module('EndGameController', [
+angular.module('endGameCtrl', [
     'ui.bootstrap',
-    'PlayerService'
-]).controller('EndGameCtrl', ['$scope', '$modalInstance', 'name', 'points', 'won', 'Player', function ($scope, $modalInstance, name, points, won, Player) {
-console.log(name);
-    console.log(points);
-    console.log(won);
+    'playerService'
+]).controller('EndGameController', ['$scope', '$modalInstance', 'name', 'points', 'won', 'Player', function ($scope, $modalInstance, name, points, won, Player) {
+
     $scope.won = won;
     Player.create(name, points);
 

@@ -3,7 +3,7 @@
  */
 "use strict";
 
-angular.module('LeaderBoardController', ['PlayerService']).controller('LeaderBoardCtrl', ['$scope', 'Player', function ($scope, Player) {
+angular.module('leaderBoardCtrl', ['playerService']).controller('LeaderBoardController', ['$scope', 'Player', function ($scope, Player) {
     Player.get16().success(function (_players) {
         $scope.players = _players;
     });

@@ -4,6 +4,12 @@ body {
     font-size: 18px;
     font-weight: 100;
 
+    .modal-header {
+        border-bottom: none;
+    }
+    .modal-footer {
+        border-top: none;
+    }
     label {
         font-weight: 100;
     }
@@ -119,6 +125,9 @@ body {
             }
             .help {
                 margin-bottom: 15px;
+                button {
+                    margin-bottom: 3px;
+                }
             }
             .levels {
                 background-color: #ffffff;
@@ -156,6 +165,34 @@ body {
                 margin-bottom: 10px;
             }
         }
+        form, .addMoreContainer {
+            -webkit-transition: all linear 0.5s;
+            transition: all linear 0.5s;
+            &.ng-hide {
+                opacity: 0;
+            }
+        }
+        .addMoreContainer {
+            -webkit-transition-delay: 0.7s;
+            transition-delay: 0.7s;
+        }
+    }
+
+    .modal-body {
+        > .call {
+            .delay-15, .delay-10, .delay-5 {
+                transition: all linear 0.5s;
+            }
+            .delay-5 {
+                transition-delay: 0.5s;
+            }
+            .delay-10 {
+                transition-delay: 1.0s;
+            }
+            .delay-15 {
+                transition-delay: 1.5s;
+            }
+        }
     }
 
     // LeaderBoard Controller
@@ -163,12 +200,6 @@ body {
         .table thead th {
             font-weight: 200;
         }
-    }
-    .modal-header {
-        border-bottom: none;
-    }
-    .modal-footer {
-        border-top: none;
     }
 }
 

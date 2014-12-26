@@ -2,30 +2,26 @@
  * Created by Vadym on 16/12/14.
  */
 "use strict";
-angular.module('Millionaire', [ 'ngRoute',
-    'ngAudio',
-    'AudioController',
-    'IndexController',
-    'LeaderBoardController',
-    'AddController',
-    'EndGameController',
-    'PlayerService',
-    'QuestionService',
-    'Directives'
+angular.module('Millionaire', [
+    'ngRoute',
+    'audioCtrl',
+    'indexCtrl',
+    'leaderBoardCtrl',
+    'addCtrl'
 ]).config(['$routeProvider', '$locationProvider',  function ($routeProvider, $locationProvider) {
 
     $routeProvider
         .when('/', {
             templateUrl: 'views/index.html',
-            controller: 'IndexCtrl'
+            controller: 'IndexController'
         })
         .when('/leaderboard', {
             templateUrl: 'views/leaderBoard.html',
-            controller: 'LeaderBoardCtrl'
+            controller: 'LeaderBoardController'
         })
         .when('/add', {
             templateUrl: 'views/add.html',
-            controller: 'AddCtrl'
+            controller: 'AddController'
         })
         .otherwise({
             redirectTo: '/'

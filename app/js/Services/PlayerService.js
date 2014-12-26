@@ -1,7 +1,7 @@
 /**
  * Created by Vadym on 25/12/14.
  */
-angular.module('PlayerService', []).factory('Player', ['$http', function ($http) {
+angular.module('playerService', []).factory('Player', ['$http', function ($http) {
     return {
         create: function (name, points) {
             return $http.post('/api/player', {

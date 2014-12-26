@@ -4,14 +4,16 @@
 "use strict";
 
 angular
-    .module('IndexController', [
-        'PlayerFilter',
-        'QuestionService',
+    .module('indexCtrl', [
+        'playerFilter',
+        'questionService',
         'ui.bootstrap',
         'ngAudio',
-        'AudioPlayerModule'
+        'audioPlayerModule',
+        'endGameCtrl',
+        'helpCtrl'
     ])
-    .controller('IndexCtrl', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', 'AudioPlayer', function ($scope, NameFilter, Question, $modal, ngAudio, AudioPlayer) {
+    .controller('IndexController', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', 'AudioPlayer', function ($scope, NameFilter, Question, $modal, ngAudio, AudioPlayer) {
         $scope.playerName = '';
         setVars();
 
@@ -79,8 +81,8 @@ angular
             soundLose.play();
             
             var modalInstance = $modal.open({
-                templateUrl: (won) ? '/views/modal_won.html' : '/views/modal_lost.html',
-                controller: 'EndGameCtrl',
+                templateUrl: (won) ? '/views/modals/won.html' : '/views/modals/lost.html',
+                controller: 'EndGameController',
                 size: 'sm',
                 resolve: {
                     name: function () {
@@ -128,6 +130,8 @@ angular
             $scope.level = 0;
             $scope.hideNewGame = false;
             $scope.helpHalfAvailable = true;
+            $scope.helpCallAvailable = true;
+            $scope.helpVoteAvailable = true;
         }
 
         /**
@@ -143,10 +147,70 @@ angular
             var correct = [window.atob(question.correctAnswer)],
                 answers = ['A','B','C','D'];
             answers.splice($.inArray(window.atob(question.correctAnswer), answers), 1); // remove correct
-            correct.push(answers[Math.floor(Math.random() * answers.length)]); // push random
+            correct.push(answers[Math.floor(Math.random() * 3)]); // push random
             setAllAnswersAvailable(false); // disable all answers
 
             for (var c=0; c < 2; c++) // make correct & one random answer available
                 $scope['show' + correct[c]] = true;
         };
+
+        $scope.helpCall = function () {
+            if (!question || !$scope.helpCallAvailable)
+                return false;
+
+            $scope.helpCallAvailable = false;
+
+            var modalInstance = $modal.open({
+                templateUrl: '/views/modals/help.html',
+                controller: 'HelpController',
+                size: 'md',
+                resolve: {
+                    name: function () {
+                        return $scope.playerName;
+                    },
+                    answer: function () {
+                        return window.atob(question.correctAnswer);
+                    },
+                    type: function () {
+                        return 'call'
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+
+            }, function () {
+                // dismissed
+            });
+        };
+
+        $scope.helpVote = function() {
+            if (!question || !$scope.helpVoteAvailable)
+                return false;
+
+            $scope.helpVoteAvailable = false;
+
+            var modalInstance = $modal.open({
+                templateUrl: '/views/modals/help.html',
+                controller: 'HelpController',
+                size: 'md',
+                resolve: {
+                    name: function () {
+                        return $scope.playerName;
+                    },
+                    answer: function () {
+                        return window.atob(question.correctAnswer);
+                    },
+                    type: function () {
+                        return 'vote'
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+
+            }, function () {
+                // dismissed
+            });
+        }
 }]);
