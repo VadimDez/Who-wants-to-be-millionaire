@@ -15,19 +15,20 @@
                 </div>
                 <div class="row answers">
                     <div class="col-md-12">
-                        <button ng-click="answer('A')" class="btn btn-answer btn-answer-left col-md-6 col-sm-6 col-xs-12" ng-class="[(showA) ? '' : 'halfHidden']">{{ question.answerA }}</button>
-                        <button ng-click="answer('B')" class="btn btn-answer col-md-6 col-sm-6 col-xs-12" ng-class="[(showB) ? '' : 'halfHidden']">{{ question.answerB }}</button>
+                        <button ng-click="answer('A')" class="btn btn-answer btn-answer-left col-md-6 col-sm-6 col-xs-12" ng-class="[(showA) ? '' : 'halfHidden']">A. {{ question.answerA }}</button>
+                        <button ng-click="answer('B')" class="btn btn-answer col-md-6 col-sm-6 col-xs-12" ng-class="[(showB) ? '' : 'halfHidden']">B. {{ question.answerB }}</button>
                     </div>
                 </div>
                 <div class="row answers">
                     <div class="col-md-12">
-                        <button ng-click="answer('C')" class="btn btn-answer btn-answer-left col-md-6 col-sm-6 col-xs-12" ng-class="[(showC) ? '' : 'halfHidden']">{{ question.answerC }}</button>
-                        <button ng-click="answer('D')" class="btn btn-answer col-md-6 col-sm-6 col-xs-12" ng-class="[(showD) ? '' : 'halfHidden']">{{ question.answerD }}</button>
+                        <button ng-click="answer('C')" class="btn btn-answer btn-answer-left col-md-6 col-sm-6 col-xs-12" ng-class="[(showC) ? '' : 'halfHidden']">C. {{ question.answerC }}</button>
+                        <button ng-click="answer('D')" class="btn btn-answer col-md-6 col-sm-6 col-xs-12" ng-class="[(showD) ? '' : 'halfHidden']">D. {{ question.answerD }}</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-2 col-sm-2 sideMenu">
-                <h3>Help:</h3>
+                <h4>Time left: {{ countDown }}</h4>
+                <h4>Help:</h4>
                 <div class="col-md-12 help">
                     <div class="row">
                         <button class="btn col-md-12 col-xs-12" ng-class="[(helpHalfAvailable) ? 'btn-success' : '']" ng-click="helpHalf()">50:50</button>
@@ -35,7 +36,7 @@
                         <button class="btn col-md-12 col-xs-12" ng-class="[(helpVoteAvailable) ? 'btn-success' : '']" ng-click="helpVote()">Vote</button>
                     </div>
                 </div>
-                <h3>Progress:</h3>
+                <h4>Progress:</h4>
                 <div class="col-md-12 levels">
                     <div class="row">
                         <div ng-repeat="i in [16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]" ng-class="[(level == i-1) ? 'active' : '', (level >= i) ? 'more' : 'less', (i == 1) ? 'col-xs-12' : 'col-xs-4']" class="level col-md-12 col-sm-12">

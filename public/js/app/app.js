@@ -31,5 +31,4 @@ angular.module('Millionaire', [
         enabled: true,
         requireBase: false
     });
-}])
-    .value("AudioPlayer",{});
+}]);

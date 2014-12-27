@@ -11,10 +11,12 @@ angular
         'ngAudio',
         'audioPlayerModule',
         'endGameCtrl',
-        'helpCtrl'
+        'helpCtrl',
+        'counterService'
     ])
-    .controller('IndexController', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', 'AudioPlayer', function ($scope, NameFilter, Question, $modal, ngAudio, AudioPlayer) {
+    .controller('IndexController', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', 'AudioPlayer', 'CountDown', function ($scope, NameFilter, Question, $modal, ngAudio, AudioPlayer, CountDown) {
         $scope.playerName = '';
+        var time = 30;
         setVars();
 
         var question = null,
@@ -64,6 +66,18 @@ angular
 
             if (soundNext.currentTime > 0)
                 soundNext.currentTime = 0;
+
+            // countdown
+            CountDown.stop();
+            CountDown.start(time, 1000, function (seconds) {
+
+                $scope.countDown = seconds;
+
+                if (seconds == 0) { // game over when countdown is over
+                    launchModal(false);
+                    setVars();
+                }
+            });
 
             soundNext.play();
             question = questions[$scope.level];
@@ -128,6 +142,7 @@ angular
          */
         function setVars() {
             $scope.level = 0;
+            $scope.countDown = time;
             $scope.hideNewGame = false;
             $scope.helpHalfAvailable = true;
             $scope.helpCallAvailable = true;

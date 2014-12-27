@@ -1,5 +1,6 @@
 <div class="modal-header">
-    <h3 class="modal-title">Call to a friend</h3>
+    <h3 class="modal-title" ng-show="(type == 'vote')">Voting</h3>
+    <h3 class="modal-title" ng-show="(type == 'call')">Call to a friend</h3>
 </div>
 <div class="modal-body">
     <div class="call" ng-show="(type == 'call')">
@@ -8,9 +9,12 @@
         <p class="delay-15">... {{ answer }}</p>
     </div>
     <div class="vote" ng-show="(type == 'vote')">
-        <div class="progress" ng-repeat="(key, value) in answer">
-            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100" style="{{ 'width:' + value + '%' }}">
-                <span class="sr-only">{{ key }}</span>
+        <div ng-repeat="(key, value) in answer">
+            <h4>{{ key }}</h4>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100" style="{{ 'width:' + value + '%' }}">
+                    <span class="sr-only">{{ key }}</span>
+                </div>
             </div>
         </div>
     </div>
