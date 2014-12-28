@@ -16,7 +16,8 @@ angular
     ])
     .controller('IndexController', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', 'AudioPlayer', 'CountDown', function ($scope, NameFilter, Question, $modal, ngAudio, AudioPlayer, CountDown) {
         $scope.playerName = '';
-        var time = 30;
+        var time = 30,
+            points;
         setVars();
 
         var question = null,
@@ -25,8 +26,8 @@ angular
             soundNext = audio('/audio/Page_Turn.wav'),
             soundLose = audio('/audio/Blop.wav');
 
-        Question.get16().success(function (_questions) {
-            if (_questions.length === 16)
+        Question.get15().success(function (_questions) {
+            if (_questions.length === 15)
                 available = true;
 
             questions = _questions;
@@ -48,8 +49,10 @@ angular
                 return false;
 
             if (Letter == window.atob(question.correctAnswer)) {
+                points += $scope.level * CountDown.left();
+
                 $scope.level++;
-                if ($scope.level >= 16) {
+                if ($scope.level >= 15) {
                     launchModal(true); // won
                 } else {
                     game();
@@ -91,7 +94,7 @@ angular
             };
         }
 
-        function launchModal(won) {
+        function launchModal(won, points) {
             soundLose.play();
             
             var modalInstance = $modal.open({
@@ -103,7 +106,7 @@ angular
                         return $scope.playerName;
                     },
                     points: function () {
-                        return $scope.level;
+                        return points;
                     },
                     won: function () {
                         return won;
@@ -147,6 +150,7 @@ angular
             $scope.helpHalfAvailable = true;
             $scope.helpCallAvailable = true;
             $scope.helpVoteAvailable = true;
+            points = 0;
         }
 
         /**
@@ -227,5 +231,10 @@ angular
             }, function () {
                 // dismissed
             });
-        }
+        };
+
+        // on leave
+        $scope.$on("$destroy", function handler() {
+            CountDown.stop();
+        });
 }]);

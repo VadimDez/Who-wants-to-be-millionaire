@@ -7,8 +7,8 @@ angular.module('questionService', []).factory('Question', ['$http', function ($h
             return $http.post('/api/question', questionData);
         },
 
-        get16: function () {
-            return $http.get('/api/question/get16');
+        get15: function () {
+            return $http.get('/api/question/get15');
         }
     }
 }]);

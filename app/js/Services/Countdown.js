@@ -21,6 +21,9 @@ angular.module('counterService', []).factory('CountDown', function () {
         },
         stop: function () {
             clearInterval(timer);
+        },
+        left: function () {
+            return seconds;
         }
     }
 });

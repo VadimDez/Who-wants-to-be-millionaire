@@ -34,10 +34,6 @@ angular
             $scope.correctAnswer = 'A';
         };
 
-        $scope.invert = function () {
-            $scope.added = !$scope.added;
-        };
-
         /**
          * Check if fields aren't empty
          * @returns {boolean}

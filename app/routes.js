@@ -9,11 +9,11 @@ var path = require('path'),
 module.exports = function (app) {
 
     // get all
-    app.get('/api/question/get16', function (req, res) {
+    app.get('/api/question/get15', function (req, res) {
 
         Question
             .findRandom()
-            .limit(16)
+            .limit(15)
             .exec(function (err, questions) {
                 if (err)
                     res.send(err);
