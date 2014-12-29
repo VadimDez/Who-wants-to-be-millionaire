@@ -14,227 +14,232 @@ angular
         'helpCtrl',
         'counterService'
     ])
-    .controller('IndexController', ['$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', 'AudioPlayer', 'CountDown', function ($scope, NameFilter, Question, $modal, ngAudio, AudioPlayer, CountDown) {
-        $scope.playerName = '';
-        var time = 30,
-            points;
-        setVars();
+    .controller('IndexController', [
+        '$scope', 'NameFilter', 'Question', '$modal', 'ngAudio', 'AudioPlayer', 'CountDown',
+        function ($scope, NameFilter, Question, $modal, ngAudio, AudioPlayer, CountDown, Menu) {
+            $scope.playerName = '';
 
-        var question = null,
-            questions = null,
-            available = false,
-            soundNext = audio('/audio/Page_Turn.wav'),
-            soundLose = audio('/audio/Blop.wav');
+            var time = 30,
+                points;
+            setVars();
 
-        Question.get15().success(function (_questions) {
-            if (_questions.length === 15)
-                available = true;
+            var question = null,
+                questions = null,
+                available = false,
+                soundNext = audio('/audio/Page_Turn.wav'),
+                soundLose = audio('/audio/Blop.wav');
 
-            questions = _questions;
-        });
+            Question.get15().success(function (_questions) {
+                if (_questions.length === 15)
+                    available = true;
 
-        // on new game
-        $scope.newGame = function () {
-            if (NameFilter($scope.playerName) && available) {
-                $scope.hideNewGame = true;
+                questions = _questions;
+            });
 
-                game();
-            }
-        };
+            // on new game
+            $scope.newGame = function () {
+                if (NameFilter($scope.playerName) && available) {
+                    $scope.hideNewGame = true;
 
-        // on answer
-        $scope.answer = function (Letter) {
-
-            if (available && question && $.inArray(Letter, ['A', 'B', 'C', 'D']) == -1)
-                return false;
-
-            if (Letter == window.atob(question.correctAnswer)) {
-                points += $scope.level * CountDown.left();
-
-                $scope.level++;
-                if ($scope.level >= 15) {
-                    launchModal(true); // won
-                } else {
                     game();
                 }
-            } else {
-                launchModal(false);
-                setVars();
-            }
-        };
+            };
 
-        // next question
-        function game() {
-            setAllAnswersAvailable(true);
+            // on answer
+            $scope.answer = function (Letter) {
 
-            if (soundNext.currentTime > 0)
-                soundNext.currentTime = 0;
+                if (available && question && $.inArray(Letter, ['A', 'B', 'C', 'D']) == -1)
+                    return false;
 
-            // countdown
-            CountDown.stop();
-            CountDown.start(time, 1000, function (seconds) {
+                if (Letter == window.atob(question.correctAnswer)) {
+                    points += $scope.level * CountDown.left();
 
-                $scope.countDown = seconds;
-
-                if (seconds == 0) { // game over when countdown is over
+                    $scope.level++;
+                    if ($scope.level >= 15) {
+                        launchModal(true); // won
+                    } else {
+                        game();
+                    }
+                } else {
                     launchModal(false);
                     setVars();
                 }
-            });
-
-            soundNext.play();
-            question = questions[$scope.level];
-
-            $scope.question = {
-                question: question.question,
-                answerA: question.answerA,
-                answerB: question.answerB,
-                answerC: question.answerC,
-                answerD: question.answerD
             };
-        }
 
-        function launchModal(won, points) {
-            soundLose.play();
-            
-            var modalInstance = $modal.open({
-                templateUrl: (won) ? '/views/modals/won.html' : '/views/modals/lost.html',
-                controller: 'EndGameController',
-                size: 'sm',
-                resolve: {
-                    name: function () {
-                        return $scope.playerName;
-                    },
-                    points: function () {
-                        return points;
-                    },
-                    won: function () {
-                        return won;
+            // next question
+            function game() {
+                setAllAnswersAvailable(true);
+
+                if (soundNext.currentTime > 0)
+                    soundNext.currentTime = 0;
+
+                // countdown
+                CountDown.stop();
+                CountDown.start(time, 1000, function (seconds) {
+
+                    $scope.countDown = seconds;
+
+                    if (seconds == 0) { // game over when countdown is over
+                        launchModal(false);
+                        setVars();
                     }
-                }
-            });
+                });
 
-            modalInstance.result.then(function () {
+                soundNext.play();
+                question = questions[$scope.level];
 
-            }, function () {
-                // dismissed
-            });
-        }
-
-        function audio(url) {
-            if (AudioPlayer[url]) {
-                return AudioPlayer[url];
-            } else {
-                var sound = ngAudio.load(url);
-                sound.volume = 0.5;
-                AudioPlayer[url] = sound;
-                return sound;
+                $scope.question = {
+                    question: question.question,
+                    answerA: question.answerA,
+                    answerB: question.answerB,
+                    answerC: question.answerC,
+                    answerD: question.answerD
+                };
             }
-        }
 
-        /**
-         * Set answer availability
-         * @param {boolean} value
-         */
-        function setAllAnswersAvailable(value) {
-            $scope.showA = $scope.showB = $scope.showC = $scope.showD = value;
-        }
+            function launchModal(won, points) {
+                soundLose.play();
 
-        /**
-         * Set new game vars
-         */
-        function setVars() {
-            $scope.level = 0;
-            $scope.countDown = time;
-            $scope.hideNewGame = false;
-            $scope.helpHalfAvailable = true;
-            $scope.helpCallAvailable = true;
-            $scope.helpVoteAvailable = true;
-            points = 0;
-        }
-
-        /**
-         * 50:50 help
-         * @returns {boolean}
-         */
-        $scope.helpHalf = function () {
-            if (!question || !$scope.helpHalfAvailable)
-                return false;
-
-            $scope.helpHalfAvailable = false;
-
-            var correct = [window.atob(question.correctAnswer)],
-                answers = ['A','B','C','D'];
-            answers.splice($.inArray(window.atob(question.correctAnswer), answers), 1); // remove correct
-            correct.push(answers[Math.floor(Math.random() * 3)]); // push random
-            setAllAnswersAvailable(false); // disable all answers
-
-            for (var c=0; c < 2; c++) // make correct & one random answer available
-                $scope['show' + correct[c]] = true;
-        };
-
-        $scope.helpCall = function () {
-            if (!question || !$scope.helpCallAvailable)
-                return false;
-
-            $scope.helpCallAvailable = false;
-
-            var modalInstance = $modal.open({
-                templateUrl: '/views/modals/help.html',
-                controller: 'HelpController',
-                size: 'md',
-                resolve: {
-                    name: function () {
-                        return $scope.playerName;
-                    },
-                    answer: function () {
-                        return window.atob(question.correctAnswer);
-                    },
-                    type: function () {
-                        return 'call'
+                var modalInstance = $modal.open({
+                    templateUrl: (won) ? '/views/modals/won.html' : '/views/modals/lost.html',
+                    controller: 'EndGameController',
+                    size: 'sm',
+                    resolve: {
+                        name: function () {
+                            return $scope.playerName;
+                        },
+                        points: function () {
+                            return points;
+                        },
+                        won: function () {
+                            return won;
+                        }
                     }
+                });
+
+                modalInstance.result.then(function () {
+
+                }, function () {
+                    // dismissed
+                });
+            }
+
+            function audio(url) {
+                if (AudioPlayer[url]) {
+                    return AudioPlayer[url];
+                } else {
+                    var sound = ngAudio.load(url);
+                    sound.volume = 0.5;
+                    AudioPlayer[url] = sound;
+                    return sound;
                 }
-            });
+            }
 
-            modalInstance.result.then(function () {
+            /**
+             * Set answer availability
+             * @param {boolean} value
+             */
+            function setAllAnswersAvailable(value) {
+                $scope.showA = $scope.showB = $scope.showC = $scope.showD = value;
+            }
 
-            }, function () {
-                // dismissed
-            });
-        };
+            /**
+             * Set new game vars
+             */
+            function setVars() {
+                $scope.level = 0;
+                $scope.countDown = time;
+                $scope.hideNewGame = false;
+                $scope.helpHalfAvailable = true;
+                $scope.helpCallAvailable = true;
+                $scope.helpVoteAvailable = true;
+                points = 0;
+            }
 
-        $scope.helpVote = function() {
-            if (!question || !$scope.helpVoteAvailable)
-                return false;
+            /**
+             * 50:50 help
+             * @returns {boolean}
+             */
+            $scope.helpHalf = function () {
+                if (!question || !$scope.helpHalfAvailable)
+                    return false;
 
-            $scope.helpVoteAvailable = false;
+                $scope.helpHalfAvailable = false;
 
-            var modalInstance = $modal.open({
-                templateUrl: '/views/modals/help.html',
-                controller: 'HelpController',
-                size: 'md',
-                resolve: {
-                    name: function () {
-                        return $scope.playerName;
-                    },
-                    answer: function () {
-                        return window.atob(question.correctAnswer);
-                    },
-                    type: function () {
-                        return 'vote'
+                var correct = [window.atob(question.correctAnswer)],
+                    answers = ['A','B','C','D'];
+                answers.splice($.inArray(window.atob(question.correctAnswer), answers), 1); // remove correct
+                correct.push(answers[Math.floor(Math.random() * 3)]); // push random
+                setAllAnswersAvailable(false); // disable all answers
+
+                for (var c=0; c < 2; c++) // make correct & one random answer available
+                    $scope['show' + correct[c]] = true;
+            };
+
+            $scope.helpCall = function () {
+                if (!question || !$scope.helpCallAvailable)
+                    return false;
+
+                $scope.helpCallAvailable = false;
+
+                var modalInstance = $modal.open({
+                    templateUrl: '/views/modals/help.html',
+                    controller: 'HelpController',
+                    size: 'md',
+                    resolve: {
+                        name: function () {
+                            return $scope.playerName;
+                        },
+                        answer: function () {
+                            return window.atob(question.correctAnswer);
+                        },
+                        type: function () {
+                            return 'call'
+                        }
                     }
-                }
+                });
+
+                modalInstance.result.then(function () {
+
+                }, function () {
+                    // dismissed
+                });
+            };
+
+            $scope.helpVote = function() {
+                if (!question || !$scope.helpVoteAvailable)
+                    return false;
+
+                $scope.helpVoteAvailable = false;
+
+                var modalInstance = $modal.open({
+                    templateUrl: '/views/modals/help.html',
+                    controller: 'HelpController',
+                    size: 'md',
+                    resolve: {
+                        name: function () {
+                            return $scope.playerName;
+                        },
+                        answer: function () {
+                            return window.atob(question.correctAnswer);
+                        },
+                        type: function () {
+                            return 'vote'
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function () {
+
+                }, function () {
+                    // dismissed
+                });
+            };
+
+            // on leave
+            $scope.$on("$destroy", function handler() {
+                CountDown.stop();
             });
-
-            modalInstance.result.then(function () {
-
-            }, function () {
-                // dismissed
-            });
-        };
-
-        // on leave
-        $scope.$on("$destroy", function handler() {
-            CountDown.stop();
-        });
-}]);
+        }
+    ]
+);

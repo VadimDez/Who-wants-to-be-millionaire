@@ -4,7 +4,7 @@
 "use strict";
 angular.module('Millionaire', [
     'ngRoute',
-    'audioCtrl',
+    'menuCtrl',
     'indexCtrl',
     'leaderBoardCtrl',
     'addCtrl'

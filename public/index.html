@@ -22,9 +22,9 @@
 </head>
 
 <body ng-app="Millionaire" class="col-md-12">
-    <div class="row menu">
+    <div class="row menu" ng-controller="MenuController">
         <div class="col-md-12">
-            <div ng-controller="AudioController" class="pull-right audioCtrl">
+            <div class="pull-right audioCtrl">
                 <div ng-show="turned" class="audio-range">
                     <input type="range" min="0" max="1" step="0.01" ng-model="music.volume">
                 </div>
@@ -37,13 +37,13 @@
                     </a>
                 </div>
             </div>
-            <a ng-href="/">
+            <a ng-href="/" ng-class="isActive('/')">
                 <img src="/images/play.png">
             </a>
-            <a ng-href="/leaderboard">
+            <a ng-href="/leaderboard" ng-class="isActive('/leaderboard')">
                 <img src="/images/board.png">
             </a>
-            <a ng-href="/add">
+            <a ng-href="/add" ng-class="isActive('/add')">
                 <img src="/images/add.png">
             </a>
         </div>
