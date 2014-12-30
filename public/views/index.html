@@ -1,18 +1,18 @@
 <div class="IndexCtrl">
-    <div class="col-md-12 container" ng-hide="hideNewGame">
-        <h1>New Game</h1>
-        <div id="input-section">
-            <label for="input-name">Your name: </label>
-            <input type="text" id="input-name" placeholder="Insert your name..." class="form-control" name="player-name" ng-model="playerName">
-        </div>
-        <button class="btn btn-success pull-right newGame" ng-click="newGame()">Start</button>
+    <div class="col-md-12" ng-hide="hideNewGame">
+        <form  class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
+            <h1>New Game</h1>
+            <div id="input-section">
+                <label for="input-name">Your name: </label>
+                <input type="text" id="input-name" placeholder="Insert your name..." class="form-control" name="player-name" ng-model="playerName">
+            </div>
+            <button type="submit" class="btn btn-success pull-right newGame" ng-click="newGame()"><i class="glyphicon glyphicon-chevron-right"></i> Start</button>
+        </form>
     </div>
     <div class="col-md-12">
         <div class="row" ng-show="hideNewGame">
             <div class="col-md-10 col-sm-10 container">
-                <div class="well">
-                    {{ question.question }}
-                </div>
+                <h1 class="question">{{ question.question }}</h1>
                 <div class="row answers">
                     <div class="col-md-12">
                         <button ng-click="answer('A')" class="btn btn-answer btn-answer-left col-md-6 col-sm-6 col-xs-12" ng-class="[(showA) ? '' : 'halfHidden']">A. {{ question.answerA }}</button>
@@ -39,7 +39,7 @@
                 <h4>Progress:</h4>
                 <div class="col-md-12 levels">
                     <div class="row">
-                        <div ng-repeat="i in [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]" ng-class="[(level == i-1) ? 'active' : '', (level >= i) ? 'more' : 'less', (i == 1) ? 'col-xs-12' : 'col-xs-4']" class="level col-md-12 col-sm-12">
+                        <div ng-repeat="i in [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]" ng-class="[(level == i-1) ? 'active' : '', (level >= i) ? 'more' : 'less']" class="level col-md-12 col-sm-12 col-xs-4">
                             <div>{{ i }}</div>
                         </div>
                     </div>

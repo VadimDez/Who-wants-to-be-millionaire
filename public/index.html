@@ -24,15 +24,15 @@
 <body ng-app="Millionaire" class="col-md-12">
     <div class="row menu" ng-controller="MenuController">
         <div class="col-md-12">
-            <div class="pull-right audioCtrl">
+            <div class="pull-right audioCtrl" ng-class="[(turned) ? 'on' : 'off']">
                 <div ng-show="turned" class="audio-range">
                     <input type="range" min="0" max="1" step="0.01" ng-model="music.volume">
                 </div>
                 <div>
-                    <a ng-click="turnOn()" ng-hide="turned" class="turnOn">
+                    <a ng-click="turnOn()" class="turnOn">
                         <img src="/images/no_sound.png" popover="Turn on music" popover-trigger="mouseenter" popover-placement="left">
                     </a>
-                    <a ng-click="turnOff()" ng-show="turned" class="turnOff">
+                    <a ng-click="turnOff()" class="turnOff">
                         <img src="/images/sound.png" popover="Turn off music" popover-trigger="mouseenter" popover-placement="left">
                     </a>
                 </div>
@@ -48,7 +48,11 @@
             </a>
         </div>
     </div>
-    <div ng-view></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div ng-view></div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="footer">Vadym Yatsyuk - 2014</div>

@@ -1,4 +1,4 @@
-<div class="col-md-12 AddCtrl container">
+<div class="col-md-8 col-md-offset-2 AddCtrl container">
     <form ng-submit="add()" ng-hide="added">
         <div class="col-md-12">
             <h1>Add new question</h1>
@@ -31,7 +31,9 @@
             </select>
         </div>
         <div class="col-md-12">
-            <button type="submit" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> Add Question</button>
+            <div class="row">
+                <button type="submit" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> Add Question</button>
+            </div>
         </div>
     </form>
     <div class="col-md-12 addMoreContainer" ng-show="added">
