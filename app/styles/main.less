@@ -1,9 +1,6 @@
 @font-face {
-    font-family:"HelveNueThin";
-    src:url("/styles/HelveticaNeueThn.eot?") format("eot"),
-        url("/styles/HelveticaNeueThn.woff") format("woff"),
-        url("/styles/HelveticaNeueThn.ttf") format("truetype"),
-        url("/styles/HelveticaNeueThn.svg#HelveNueThin") format("svg");
+    font-family:"Helvetica-Light";
+    src: url('/style/Helvetica-Light.otf') format("opentype");
     font-weight:normal;
     font-style:normal;
 }
@@ -12,7 +9,7 @@ html {
     height: 100%;
 }
 body {
-    font-family:"HelveNueThin", Helvetica, sans-serif;
+    font-family:"Helvetica-Light", Helvetica, sans-serif;
     background-color: #EFEFEF;
     font-size: 18px;
     height: 100%;
@@ -20,6 +17,9 @@ body {
 //    background-repeat: no-repeat;
 //    background-attachment: fixed;
 
+    label {
+        font-weight: 500;
+    }
     .modal-header {
         border-bottom: none;
     }
@@ -55,6 +55,9 @@ body {
         padding-bottom: 3px;
         text-align: center;
         font-size: 14px;
+        a {
+            color: #000000;
+        }
     }
     .container {
         margin-top: 15px;
@@ -139,7 +142,6 @@ body {
             .newGame {
                 margin-top: 10px;
                 padding-right: 15px;
-                transition: visibility 1.0s ease;
                 > i {
                     margin-right: 5px;
                 }
