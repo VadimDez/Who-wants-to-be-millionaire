@@ -22,7 +22,8 @@ module.exports = function(grunt) {
                 mangle: false,
                 compress: {
 //                    drop_console: true
-                }
+                },
+                sourceMap: true
             },
             build: {
                 src: [

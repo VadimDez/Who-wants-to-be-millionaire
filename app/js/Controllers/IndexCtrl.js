@@ -56,12 +56,12 @@ angular
 
                     $scope.level++;
                     if ($scope.level >= 15) {
-                        launchModal(true); // won
+                        launchModal(true, points); // won
                     } else {
                         game();
                     }
                 } else {
-                    launchModal(false);
+                    launchModal(false, points);
                     setVars();
                 }
             };
@@ -80,7 +80,7 @@ angular
                     $scope.countDown = seconds;
 
                     if (seconds == 0) { // game over when countdown is over
-                        launchModal(false);
+                        launchModal(false, points);
                         setVars();
                     }
                 });
